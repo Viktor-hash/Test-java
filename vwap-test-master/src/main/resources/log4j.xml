@@ -7,6 +7,14 @@
 		</layout>
 	</appender>
 
+	<appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
+		<param name="Threshold" value="INFO" />
+		<param name="File" value="result.log"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{dd-MM-yyyy HH:mm:ss,SSS} [%-5p] [%t] %c: %m\n"/>
+		</layout>
+	</appender>
+
 	<appender name="async" class="org.apache.log4j.AsyncAppender">
 		<param name="BufferSize" value="5000"/>
 		<appender-ref ref="console"/>
@@ -14,10 +22,12 @@
 
 	<logger name="TEST_PRODUCT">
 		<level value="DEBUG" />
-	</logger> 
+	</logger>
+
 	<root>
 		<priority value="info"/>
     	<appender-ref ref="async"/>
-	</root> 
+		<appender-ref ref="fileAppender" />
+	</root>
 	
 </log4j:configuration>
